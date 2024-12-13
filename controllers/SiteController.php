@@ -87,17 +87,14 @@ class SiteController extends Controller
      * @param $short
      * @return \yii\web\Response
      */
-    public function actionRedirect($short)
+    public function actionRedirect()
     {
         $link = $this->findModelByShort($short);
         $ip = Yii::$app->request->userIP;
         
         if ($link) {
             $link->updateCounter();
-            return $this->redirect($link->link);
         }
-
-        return $this->redirect('site/error');
     }
     
     /**

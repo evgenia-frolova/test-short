@@ -1,8 +1,6 @@
 <?php
-
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\widgets\Pjax;
+use xj\qrcode\QRcode;
+use xj\qrcode\widgets\Text;
 
 /* @var $this yii\web\View */
 
@@ -11,6 +9,15 @@ $this->title = 'Сервис коротких ссылок + QR';
 ?>
 
 <div>
-    <a target="_blank" href="<?=$link?>"><?=$shortLink?></a>
+    <p>
+        <a href="<?=$link?>" target="_blank" id="shortClick"><?=$shortLink?></a>
+    </p>    
+    
+    <?php echo Text::widget([
+        'outputDir' => '@webroot/upload/qrcode',
+        'outputDirWeb' => '@web/upload/qrcode',
+        'ecLevel' => QRcode::QR_ECLEVEL_L,
+        'text' => $link,
+        'size' => 6,
+    ]); ?>
 </div>
-

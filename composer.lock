@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72ac0b8252822528c034bbf39a2eb746",
+    "content-hash": "412ce4301ebd25951dac48ecdd6ed5af",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1282,6 +1282,46 @@
                 }
             ],
             "time": "2024-09-25T14:20:29+00:00"
+        },
+        {
+            "name": "xj/yii2-qrcode-widget",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xjflyttp/yii2-qrcode-widget.git",
+                "reference": "f6031ecb67dd34c95eca7c3eb99cf19dd9a94eba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xjflyttp/yii2-qrcode-widget/zipball/f6031ecb67dd34c95eca7c3eb99cf19dd9a94eba",
+                "reference": "f6031ecb67dd34c95eca7c3eb99cf19dd9a94eba",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "xj\\qrcode\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "xjflyttp",
+                    "email": "xjflyttp@gmail.com"
+                }
+            ],
+            "description": "yii2-qrcode-widget",
+            "support": {
+                "issues": "https://github.com/xjflyttp/yii2-qrcode-widget/issues",
+                "source": "https://github.com/xjflyttp/yii2-qrcode-widget/tree/master"
+            },
+            "time": "2015-01-15T12:44:14+00:00"
         },
         {
             "name": "yiisoft/yii2",
