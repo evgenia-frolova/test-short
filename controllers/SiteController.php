@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\Link;
 use yii\db\Expression;
+use yii\web\MethodNotAllowedHttpException;
+use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
@@ -55,7 +57,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Главная страница
      *
      * @return string
      */
@@ -79,5 +81,38 @@ class SiteController extends Controller
         return $this->render('index', [
             'model' => $model,
         ]);
+    }
+    
+    /**
+     * @param $short
+     * @return \yii\web\Response
+     */
+    public function actionRedirect($short)
+    {
+        $link = $this->findModelByShort($short);
+        $ip = Yii::$app->request->userIP;
+        
+        if ($link) {
+            $link->updateCounter();
+            return $this->redirect($link->link);
+        }
+
+        return $this->redirect('site/error');
+    }
+    
+    /**
+     * поиск по короткой ссылке
+     * @param $short
+     * @return Link
+     */
+    protected function findModelByShort($short)
+    {
+        if (($model = Link::findByShort($short)) !== null) {
+            return $model;
+        }
+        else {
+            throw new NotFoundHttpException('Запрашиваемая ссылка не существует.');
+        }    
+            
     }
 }

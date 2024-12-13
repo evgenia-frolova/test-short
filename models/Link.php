@@ -15,6 +15,7 @@ use yii\helpers\Url;
  * @property string $short_link
  * @property string $ip
  * @property string $created_at
+ * @property int $counter
  */
 class Link extends ActiveRecord
 {
@@ -35,6 +36,7 @@ class Link extends ActiveRecord
             [['created_at', 'link'], 'required'],
             ['link', 'url', 'defaultScheme' => 'http'],
             [['short_link', 'ip'], 'string', 'max' => 100],
+            [['counter'], 'integer'],
         ];
     }
 
@@ -67,13 +69,22 @@ class Link extends ActiveRecord
     }
     
     /**
-     * поиск по ссылке
+     * поиск по короткой ссылке
      *
-     * @param string $link
+     * @param string $short
      * @return static|null
      */
-    public static function findByLink($link)
+    public static function findByShort($short)
     {
-        return $this->find()->where(['link' => $link])->one();
+        return static::findOne(['short_link' => $short]);
+    }
+    
+    /**
+     * обновление количества перехода по ссылке
+     */
+    public function updateCounter()
+    {
+        $this->counter++;
+        $this->save(false);
     }
 }
