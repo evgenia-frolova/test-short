@@ -78,13 +78,4 @@ class Link extends ActiveRecord
     {
         return static::findOne(['short_link' => $short]);
     }
-    
-    /**
-     * обновление количества перехода по ссылке
-     */
-    public function updateCounter()
-    {
-        $this->counter++;
-        $this->save(false);
-    }
 }

@@ -21,3 +21,25 @@ $this->title = 'Сервис коротких ссылок + QR';
         'size' => 6,
     ]); ?>
 </div>
+
+<?php 
+$url = yii\helpers\Url::toRoute('site/redirect');
+$this->registerJs(
+"
+$('#shortClick').click(function() {
+    var date = $(this).text();
+    
+    $.ajax({
+        url: '".$url."',
+        data: {link : date},
+        method: 'post',
+        dataType: 'json',
+        success: function () {
+            alert('success');
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    })
+});
+", yii\web\View::POS_END);

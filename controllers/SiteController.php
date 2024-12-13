@@ -89,11 +89,19 @@ class SiteController extends Controller
      */
     public function actionRedirect()
     {
+        $short = Yii::$app->request->post('link');
+        
+        if (!$short) {
+            throw new NotFoundHttpException('Короткая ссылка пустая');
+        }
+        
         $link = $this->findModelByShort($short);
         $ip = Yii::$app->request->userIP;
         
         if ($link) {
-            $link->updateCounter();
+            $link->ip = $ip;
+            $link->counter++;
+            $link->save();
         }
     }
     
